@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAHRIK</title>
+    <style>
+        @font-face {
+            font-family: 'Amiri';
+            src: url('Amiri-Regular.ttf') format('truetype');
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Amiri', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            text-align: center;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        #tahrik-title {
+            font-size: 40px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .toolbar-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 10px;
+        }
+
+        .toolbar button {
+            background: #34495e;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 5px;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+        }
+
+        .toolbar button:hover {
+            background: #1abc9c;
+        }
+
+        .notepad {
+            width: 90%;
+            max-width: 800px;
+            height: 400px;
+            margin: 20px auto;
+            padding: 15px;
+            font-size: 30px;
+            direction: rtl;
+            text-align: right;
+            background: white;
+            border: 1px solid #ccc;
+            outline: none;
+            resize: none;
+            line-height: 1.8;
+            overflow-y: auto;
+            font-family: 'kfgqpc uthman taha naskh', traditional arabic, sans-serif;
+        }
+
+        .dark-mode {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .dark-mode .notepad {
+            background: #34495e;
+            color: white;
+        }
+
+        .focus-mode .toolbar-container {
+            display: none;
+        }
+
+        table {
+			font-weight: bold;
+			height: 20px;
+			font-family: 'Scheherazade', Arial, sans-serif;
+            border-collapse: collapse;
+            margin:  15px auto;
+            width: 90%;
+            font-size: 20px;
+        }
+
+        th, td {
+            border: 2px solid black;
+            padding: 3px;
+            text-align: center;
+        }
+
+        .doa {
+        	margin-top: 20px;
+            font-weight: bold;
+            font-family: 'Scheherazade', Arial, sans-serif;
+            font-size: 25px;
+            line-height: 15px;
+            color: cyan;
+    		text-shadow: 2px 2px 3px black;
+        }
+        .copyright {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div id="tahrik-title">TAHRIK</div>
+    <div id="tahrik-title">Text-based Arabic Harakat Input Keeper</div>
+
+    <div class="toolbar-container">
+        <div class="toolbar">
+            <button onclick="toggleDarkMode()">🌘</button>
+            <button onclick="toggleFocusMode()">⛶</button>
+            <button onclick="removeHarakat()">✖</button>
+            <button onclick="saveText()">💾</button>
+            <a href="https://afhimna.github.io/tutorialtahrik/" target="_blank"><button>❔</button>
+            <a href="https://afhimna.github.io/gate/" target="_blank"><button>🔗</button></a>
+        </div>
+    </div>
+
+    <div id="notepad" class="notepad" contenteditable="true" placeholder="تكتب هنا..."></div>
+
+    <table>
+        <tr>
+            <th>SIMBOL</th>
+            <th>NAMA</th>
+            <th>KODE</th>
+            <th>SIMBOL</th>
+            <th>NAMA</th>
+            <th>KODE</th>
+        </tr>
+        <tr>
+		    <td>ـً</td>
+            <td>Fathatain</td>
+            <td>W</td>
+            <td>ـَ</td>
+            <td>Fathah</td>
+            <td>Q</td>
+        </tr>
+        <tr>
+	        <td>ـٍ</td>
+            <td>Kasrotain</td>
+            <td>S</td>
+            <td>ـِ</td>
+            <td>Kasroh</td>
+            <td>A</td>
+        </tr>
+        <tr>
+            <td>ـٌ</td>
+            <td>Dlommatain</td>
+            <td>R</td>
+            <td>ـُ</td>
+            <td>Dlommah</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>ـٓ</td>
+            <td>Wasl</td>
+            <td>Z</td>
+            <td>ـْ</td>
+            <td>Sukun</td>
+            <td>X</td>
+        </tr>
+        <tr>
+            <td>ـّ</td>
+            <td>Tasydid</td>
+            <td>C</td>
+            <td>ـٰ</td>
+            <td>Mad Fathah</td>
+            <td>V</td>
+        </tr>
+        <tr>
+            <td>ـٖ</td>
+            <td>Mad Kasroh</td>
+            <td>D</td>
+            <td>ـٗ</td>
+            <td>Mad Dlommah</td>
+            <td>F</td>
+        </tr>
+    </table>
+ 
+	<p class="doa">Manfaatkan dan semaikan doa pada founder Afhimna, segenap masyayekh, keluarga dan orang terdekatnya</p>
+    <p class="doa">🙏🏻😎🙏🏻</p>
+    <p class="copyright">© 2025 Afhimna Corp. All Rights Reserved.</p>
+
+    <script>
+        let notepad = document.getElementById("notepad");
+        let historyStack = [];
+        let redoStack = [];
+
+        const harakatMap = {
+            'q': 'َ', 'w': 'ً', 'e': 'ُ', 'r': 'ٌ',
+            'a': 'ِ', 's': 'ٍ', 'x': 'ْ', 'c': 'ّ',
+            'v': 'ٰ', 'j': 'ـ', 'd': 'ٖ', 'f': 'ٗ', 'z': 'ٓ' 
+        };
+
+        function saveHistory() {
+            historyStack.push(notepad.innerHTML);
+            redoStack = [];
+        }
+
+        function undoText() {
+            if (document.queryCommandEnabled("undo")) {
+                document.execCommand("undo");
+            } else if (historyStack.length > 1) {
+                redoStack.push(historyStack.pop());
+                notepad.innerHTML = historyStack[historyStack.length - 1];
+            }
+        }
+
+        function redoText() {
+            if (document.queryCommandEnabled("redo")) {
+                document.execCommand("redo");
+            } else if (redoStack.length > 0) {
+                historyStack.push(redoStack.pop());
+                notepad.innerHTML = historyStack[historyStack.length - 1];
+            }
+        }
+
+        function removeHarakat() {
+            let text = notepad.innerText.replace(/[\u064B-\u0652\u0670\u0653\u0656\u0657]/g, '');
+            notepad.innerText = text;
+            saveHistory();
+        }
+
+        function saveText() {
+            let text = notepad.innerText;
+            let blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+            let link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "notepad_arab.txt";
+            link.click();
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+
+        function toggleFocusMode() {
+            document.body.classList.toggle("focus-mode");
+        }
+
+        document.addEventListener("keydown", function (event) {
+            if (event.ctrlKey) {
+                switch (event.key.toLowerCase()) {
+                    case "z":
+                        event.preventDefault();
+                        undoText();
+                        break;
+                    case "y":
+                        event.preventDefault();
+                        redoText();
+                        break;
+                }
+            } else {
+                let key = event.key.toLowerCase();
+                if (harakatMap[key]) {
+                    event.preventDefault();
+                    document.execCommand("insertText", false, harakatMap[key]);
+                    saveHistory();
+                }
+            }
+        });
+
+        window.onload = function () {
+            let savedText = localStorage.getItem("savedText");
+            if (savedText) {
+                notepad.innerHTML = savedText;
+            }
+            saveHistory();
+        };
+    </script>
+</body>
+</html>
