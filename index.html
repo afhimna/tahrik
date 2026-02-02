@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PEGONOTE</title>
+    <title>TAHRIK</title>
     <style>
         @font-face {
             font-family: 'Amiri';
@@ -58,10 +58,10 @@
         .notepad {
             width: 90%;
             max-width: 800px;
-            height: 150px;
+            height: 400px;
             margin: 20px auto;
             padding: 15px;
-            font-size: 40px;
+            font-size: 30px;
             direction: rtl;
             text-align: right;
             background: white;
@@ -70,7 +70,7 @@
             resize: none;
             line-height: 1.8;
             overflow-y: auto;
-            font-family: 'Scheherazade', traditional arabic, sans-serif;
+            font-family: 'kfgqpc uthman taha naskh', traditional arabic, sans-serif;
         }
 
         .dark-mode {
@@ -87,63 +87,37 @@
             display: none;
         }
 
-        .table-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
         table {
-            width: auto;
+			font-weight: bold;
+			height: 20px;
+			font-family: 'Scheherazade', Arial, sans-serif;
             border-collapse: collapse;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            overflow: hidden;
-            background: white;
-            font-family: 'Scheherazade', traditional arabic, sans-serif;
+            margin:  15px auto;
+            width: 90%;
+            font-size: 20px;
         }
 
         th, td {
-            padding: 15px;
+            border: 2px solid black;
+            padding: 3px;
             text-align: center;
-            white-space: nowrap;
-        }
-
-        th {
-            background-color: #3498db;
-            color: white;
-            font-size: 32px;
-        }
-
-        td {
-            font-size: 25px;
-            color: #333;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        tr:hover {
-            background-color: #d1e7ff;
-            transition: 0.3s;
         }
 
         .doa {
-            margin-top: 20px;
+        	margin-top: 20px;
             font-family: 'Scheherazade', Arial, sans-serif;
             font-size: 25px;
             line-height: 25px;
             color: cyan;
-            text-shadow: 2px 2px 3px black;
+    		text-shadow: 2px 2px 3px black;
         }
-
         .copyright {
             margin-top: 20px;
             font-size: 14px;
             color: #666;
         }
-        /* ===== SOWAR / SOCIAL ===== */
+        
+/* ===== SOWAR / SOCIAL ===== */
 .social-container{
   margin-top:26px;
   text-align:center;
@@ -209,45 +183,86 @@
   letter-spacing:.6px;
   color:rgba(255,255,255,.35);
 }
+
     </style>
 </head>
 <body>
-    <div id="tahrik-title">PEGONOTE</div>
+    <div id="tahrik-title">TAHRIK</div>
+    <div id="tahrik-title">Text-based Arabic Harakat Input Keeper</div>
 
     <div class="toolbar-container">
         <div class="toolbar">
             <button onclick="toggleDarkMode()">🌘</button>
             <button onclick="toggleFocusMode()">⛶</button>
+            <button onclick="removeHarakat()">✖</button>
             <button onclick="saveText()">💾</button>
-            <a href="https://afhimna.github.io/tutorialpegonote/" target="_blank"><button>❔</button></a>
+            <a href="https://afhimna.github.io/tutorialtahrik/" target="_blank"><button>❔</button>
             <a href="https://afhimna.github.io/gate/" target="_blank"><button>🔗</button></a>
         </div>
     </div>
 
     <div id="notepad" class="notepad" contenteditable="true" placeholder="تكتب هنا..."></div>
 
-    <div class="table-container">
-        <table>
-            <tr>
-                <th> ـٓ </th>
-                <th>ڮ</th>                
-                <th>ڤ</th>
-                <th>ۑ</th>
-                <th>چ</th>
-                <th>ڠ</th>
-            </tr>
-            <tr>
-                <td>Shift + 6</td>
-                <td>Shift + 5</td>
-                <td>Shift + 4</td>
-                <td>Shift + 3</td>
-                <td>Shift + 2</td>
-                <td>Shift + 1</td>
-            </tr>
-        </table>
-    </div>
-
-    <p class="doa">Manfaatkan dan semaikan doa pada founder Afhimna, segenap masyayekh, keluarga dan orang terdekatnya</p>
+    <table>
+        <tr>
+            <th>SIMBOL</th>
+            <th>NAMA</th>
+            <th>KODE</th>
+            <th>SIMBOL</th>
+            <th>NAMA</th>
+            <th>KODE</th>
+        </tr>
+        <tr>
+		    <td>ـً</td>
+            <td>Fathatain</td>
+            <td>W</td>
+            <td>ـَ</td>
+            <td>Fathah</td>
+            <td>Q</td>
+        </tr>
+        <tr>
+	        <td>ـٍ</td>
+            <td>Kasrotain</td>
+            <td>S</td>
+            <td>ـِ</td>
+            <td>Kasroh</td>
+            <td>A</td>
+        </tr>
+        <tr>
+            <td>ـٌ</td>
+            <td>Dlommatain</td>
+            <td>R</td>
+            <td>ـُ</td>
+            <td>Dlommah</td>
+            <td>E</td>
+        </tr>
+        <tr>
+            <td>ـٓ</td>
+            <td>Wasl</td>
+            <td>Z</td>
+            <td>ـْ</td>
+            <td>Sukun</td>
+            <td>X</td>
+        </tr>
+        <tr>
+            <td>ـّ</td>
+            <td>Tasydid</td>
+            <td>C</td>
+            <td>ـٰ</td>
+            <td>Mad Fathah</td>
+            <td>V</td>
+        </tr>
+        <tr>
+            <td>ـٖ</td>
+            <td>Mad Kasroh</td>
+            <td>D</td>
+            <td>ـٗ</td>
+            <td>Mad Dlommah</td>
+            <td>F</td>
+        </tr>
+    </table>
+ 
+	<p class="doa">Manfaatkan dan semaikan doa pada founder Afhimna, segenap masyayekh, keluarga dan orang terdekatnya</p>
     <p class="doa">🙏🏻😎🙏🏻</p>
 
 <div class="social-container">
@@ -269,12 +284,16 @@
     </div>
 </div>
 
-</div>
-
     <script>
+        let notepad = document.getElementById("notepad");
         let historyStack = [];
         let redoStack = [];
-        let notepad = document.getElementById("notepad");
+
+        const harakatMap = {
+            'q': 'َ', 'w': 'ً', 'e': 'ُ', 'r': 'ٌ',
+            'a': 'ِ', 's': 'ٍ', 'x': 'ْ', 'c': 'ّ',
+            'v': 'ٰ', 'j': 'ـ', 'd': 'ٖ', 'f': 'ٗ', 'z': 'ٓ' 
+        };
 
         function saveHistory() {
             historyStack.push(notepad.innerHTML);
@@ -297,6 +316,12 @@
                 historyStack.push(redoStack.pop());
                 notepad.innerHTML = historyStack[historyStack.length - 1];
             }
+        }
+
+        function removeHarakat() {
+            let text = notepad.innerText.replace(/[\u064B-\u0652\u0670\u0653\u0656\u0657]/g, '');
+            notepad.innerText = text;
+            saveHistory();
         }
 
         function saveText() {
@@ -328,20 +353,11 @@
                         redoText();
                         break;
                 }
-            } else if (event.shiftKey) {
-                let keyMap = {
-                    "Digit1": "ڠ",
-                    "Digit2": "چ",
-                    "Digit3": "ۑ",
-                    "Digit4": "ڤ",
-                    "Digit5": "ڮ",
-                    "Digit6": "ٓ"
-                };
-
-                let char = keyMap[event.code];
-                if (char) {
+            } else {
+                let key = event.key.toLowerCase();
+                if (harakatMap[key]) {
                     event.preventDefault();
-                    document.execCommand("insertText", false, char);
+                    document.execCommand("insertText", false, harakatMap[key]);
                     saveHistory();
                 }
             }
